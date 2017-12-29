@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TaskList - Register</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h2>Register a new account</h2>
+            <div class="alert alert-warning">
+                <strong id="error"></strong>
+            </div>
+            
+            <div id="registerform" class="form-group">
+
+                <label>Username:</label>
+                <input type="text" id="username" class="form-control"/> <br/>
+
+                <label>Password:</label>
+                <input type="password" id="password" class="form-control"/>  
+
+                <label>Password again:</label>
+                <input type="password" id="password2" class="form-control"/> 
+                
+                <br/>
+
+                <button class="btn btn-success" type="button" onclick="signup()">Sign up</button>
+
+            </div>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script>
+                // <![CDATA[
+                function signup() {
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+                    var password2 = document.getElementById("password2").value;
+
+
+                    var account = {username: username, password: password};
+
+                    if (username.length === 0) {
+                        document.getElementById("error").innerHTML = "Username can't be empty";
+                    } else if (password.length === 0) {
+                        document.getElementById("error").innerHTML = "Password can't be empty";
+                    } else if (password !== password2) {
+                        document.getElementById("error").innerHTML = "Passwords don't match";
+                    } else {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function () {
+                            if (this.readyState === 4 && this.status === 200) {
+                                window.location.href = "/users/login"
+                            } else if (this.readyState === 4 && this.status === 500) {
+                                document.getElementById("error").innerHTML =
+                                        "Username " + username + " already exists!";
+                            }
+                        };
+                        xhttp.open("POST", "reg", true);
+                        xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+                        console.log(account);
+                        xhttp.send(JSON.stringify(account));
+
+
+
+
+                    }
+
+                }
+                // ]]>
+        </script>
+
+
+
+    </body>
+</html>
+

@@ -1,3 +1,10 @@
 /home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/model/Note.java
-/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/model/User.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/config/SecurityConfiguration.java
 /home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/CyberSecurityApplication.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/repository/AccountRepository.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/service/CustomUserDetailsService.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/controller/DefaultController.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/controller/AccountController.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/controller/NoteController.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/repository/NoteRepository.java
+/home/kim/CyberSecurityProject/src/main/java/com/sec/cybersecurityproject/model/Account.java

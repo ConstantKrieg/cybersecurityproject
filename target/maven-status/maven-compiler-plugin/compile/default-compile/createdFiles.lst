@@ -1,3 +1,10 @@
-com/sec/cybersecurityproject/model/User.class
+com/sec/cybersecurityproject/repository/NoteRepository.class
+com/sec/cybersecurityproject/service/CustomUserDetailsService.class
 com/sec/cybersecurityproject/model/Note.class
 com/sec/cybersecurityproject/CyberSecurityApplication.class
+com/sec/cybersecurityproject/repository/AccountRepository.class
+com/sec/cybersecurityproject/controller/NoteController.class
+com/sec/cybersecurityproject/controller/AccountController.class
+com/sec/cybersecurityproject/controller/DefaultController.class
+com/sec/cybersecurityproject/config/SecurityConfiguration.class
+com/sec/cybersecurityproject/model/Account.class
