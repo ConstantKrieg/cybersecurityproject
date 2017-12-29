@@ -58,7 +58,7 @@
                                 window.location.href = "/users/login"
                             } else if (this.readyState === 4 && this.status === 500) {
                                 document.getElementById("error").innerHTML =
-                                        "Username " + username + " already exists!";
+                                        this.responseText;
                             }
                         };
                         xhttp.open("POST", "reg", true);

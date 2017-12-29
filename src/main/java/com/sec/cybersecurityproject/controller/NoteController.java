@@ -1,10 +1,13 @@
 package com.sec.cybersecurityproject.controller;
 
+import com.sec.cybersecurityproject.model.Account;
 import com.sec.cybersecurityproject.model.Note;
 import com.sec.cybersecurityproject.repository.AccountRepository;
 import com.sec.cybersecurityproject.repository.NoteRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,19 +29,41 @@ public class NoteController {
             produces = "application/json")
     @ResponseBody
     public List<Note> getNotesFromUser(@PathVariable Long userId) {
-        List<Note> list = noteRepo.findByAccountId(userId);
-                return list;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Account acc = accountRepo.findByUsername(auth.getName());
+
+        if (acc.getId().longValue() == userId) {
+            List<Note> list = noteRepo.findByAccountId(userId);
+            return list;
+        }
+        return null;
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteNote(@PathVariable Long id) {
-        noteRepo.delete(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Account acc = accountRepo.findByUsername(auth.getName());
+
+        if (acc.getId().longValue() == id) {
+            noteRepo.delete(id);
+        }
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseBody
     public Note addNote(@RequestBody Note note) {
-        return noteRepo.save(note);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Account acc = accountRepo.findByUsername(auth.getName());
+
+        if (acc.getId().longValue() == note.getAccountId()) {
+            return noteRepo.save(note);
+        }
+        return null;
+        
     }
 
 }
